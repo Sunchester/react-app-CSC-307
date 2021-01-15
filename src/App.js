@@ -63,9 +63,22 @@ class App extends Component {
       console.log(error);
     });
 }
+  makeDeleteCall(character){
+      return axios.delete('http://localhost:5000/users', {params: {id: character.id}})
+       .then(function (response) {
+         console.log(response);
+         if(response.status === 200){
+           return response.data;
+         }
+       })
+       .catch(function (error) {
+         console.log(error);
+         return false;
+       });
+    }
   removeCharacter = index => {
     const { characters } = this.state
-
+    this.makeDeleteCall(characters[index])
     this.setState({
     characters: characters.filter((character, i) => {
       return i !== index
