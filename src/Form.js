@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 
 class Form extends Component {
+  
   initialState = {
     name: '',
     job: '',
+    id: '',
   };
 
   state = this.initialState;
   handleChange = event => {
   const { name, value } = event.target
-
   this.setState({
     [name]: value,
   })
 }
 submitForm = () => {
+    this.state.id = Math.random().toString(36).substr(2,6)
     this.props.handleSubmit(this.state)
     this.setState(this.initialState)
 }
