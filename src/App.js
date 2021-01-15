@@ -27,6 +27,8 @@ class App extends Component {
     // ]
   
     makePostCall(character){
+      var newid = Math.random().toString(36).substr(2,6)
+      character.id = newid
       return axios.post('http://localhost:5000/users', character)
        .then(function (response) {
          console.log(response);

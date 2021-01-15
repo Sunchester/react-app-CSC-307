@@ -9,6 +9,8 @@ class Form extends Component {
   };
 
   state = this.initialState;
+
+
   handleChange = event => {
   const { name, value } = event.target
   this.setState({
@@ -16,13 +18,15 @@ class Form extends Component {
   })
 }
 submitForm = () => {
-    this.state.id = Math.random().toString(36).substr(2,6)
+    // var newid = Math.random().toString(36).substr(2,6)
+    // this.setState({
+    //   id: newid,
+    // });
     this.props.handleSubmit(this.state)
     this.setState(this.initialState)
 }
 render() {
   const { name, job } = this.state;
-
   return (
     <form>
       <label htmlFor="name">Name</label>
