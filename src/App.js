@@ -68,7 +68,7 @@ class App extends Component {
        .then(function (response) {
          console.log(response);
          if(response.status === 200){
-           return response.data;
+           return true;
          }
        })
        .catch(function (error) {
@@ -78,12 +78,17 @@ class App extends Component {
     }
   removeCharacter = index => {
     const { characters } = this.state
-    this.makeDeleteCall(characters[index])
-    this.setState({
-    characters: characters.filter((character, i) => {
-      return i !== index
-    }),
-  })
+    this.makeDeleteCall(characters[index]).then(deleteResult =>{
+      if(deleteResult === true){
+      this.setState({
+        characters: characters.filter((character, i) => {
+          return i !== index
+        }),
+      })
+    }
+  });
+  
+    
 }
   render() {
 	  const { characters } = this.state;
